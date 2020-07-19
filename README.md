@@ -1,3 +1,7 @@
+# dragdrops
+A simple React drag and drop component to manage the tasks
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
