@@ -83,9 +83,9 @@ function DragDrop() {
                         onDrop={(event) => { onDrop(event, "todo") }}>
                         <span className="group-header badge badge-secondary"><h4>Tasks</h4></span>
                         <div className="col-md-8 offset-md-2">
-                            {/* <pre> */}
-                                {JSON.stringify(initialTasks)}
-                            {/* </pre> */}
+                            <pre>
+                                {JSON.stringify(initialTasks, null, 2)}
+                            </pre>
                         </div>
                     </div>
                 </div>
