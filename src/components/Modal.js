@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Modal.css'
-const Modal = ({ isShowing, hide }) => {
+const Modal = ({ isShowing, hide, addNewTask }) => {
+    const [name, setName] = useState("");
     return (
         isShowing ? <div className="modal show">
             <div className="modal-dialog modal-dialog-centered" role="document">
@@ -16,14 +17,14 @@ const Modal = ({ isShowing, hide }) => {
                         <div className="row">
                             <div className="col-md-12">
                                 <label for="taskName">Task Name</label>
-                                <input type="email" className="form-control" placeholder="Todo task name" />
+                                <input type="email" value={name} onChange={e => setName(e.target.value)} className="form-control" placeholder="Todo task name" />
                             </div>
                         </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-
                             dismiss="modal" onClick={hide}>Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-primary" onClick={() => addNewTask(name)}>Save changes</button>
                     </div>
                 </div>
             </div>

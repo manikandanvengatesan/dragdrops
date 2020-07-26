@@ -3,12 +3,12 @@ import '../styles/dragdrop.css';
 import Modal from './Modal';
 
 let initialTasks = [
-    { id: "1", taskName: "Read book", type: "todo", backgroundColor: "red", ordering: 1 },
-    { id: "2", taskName: "Pay bills", type: "todo", backgroundColor: "green", ordering: 2 },
-    { id: "3", taskName: "Pay Credit bill", type: "inProgress", backgroundColor: "red", ordering: 1 },
-    { id: "4", taskName: "Do yoga", type: "inProgress", backgroundColor: "green", ordering: 2 },
-    { id: "5", taskName: "Go to the gym", type: "Done", backgroundColor: "blue", ordering: 3 },
-    { id: "6", taskName: "Play baseball", type: "Done", backgroundColor: "green", ordering: 4 }
+    { id: 1, taskName: "Read book", type: "todo", backgroundColor: "red", ordering: 1 },
+    { id: 2, taskName: "Pay bills", type: "todo", backgroundColor: "green", ordering: 2 },
+    { id: 3, taskName: "Pay Credit bill", type: "inProgress", backgroundColor: "red", ordering: 1 },
+    { id: 4, taskName: "Do yoga", type: "inProgress", backgroundColor: "green", ordering: 2 },
+    { id: 5, taskName: "Go to the gym", type: "Done", backgroundColor: "blue", ordering: 3 },
+    { id: 6, taskName: "Play baseball", type: "Done", backgroundColor: "green", ordering: 4 }
 ];
 
 function DragDrop() {
@@ -24,7 +24,19 @@ function DragDrop() {
     const onDragOver = (event) => {
         event.preventDefault();
     }
-
+    const addTask = (input) => {
+        let task = {
+            id: data.length + 1,
+            taskName: input,
+            type: "todo",
+            backgroundColor: "red",
+            ordering: data.length + 1
+        }
+        let newData = data;
+        newData.push(task)
+        setData(newData);
+        setShowModal(!showModal)
+    }
     const onDrop = (event, cat) => {
         let taskName = event.dataTransfer.getData("taskName");
         let filteredData = data.filter((task) => {
@@ -98,7 +110,7 @@ function DragDrop() {
                     </div>
                 </div>
             </div>
-            <Modal isShowing={showModal} hide={toggle} />
+            <Modal isShowing={showModal} hide={toggle} addNewTask={addTask} />
         </div>
     )
 }
