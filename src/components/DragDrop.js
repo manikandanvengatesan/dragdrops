@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/dragdrop.css';
-
+import Modal from './Modal';
 
 let initialTasks = [
     { id: "1", taskName: "Read book", type: "todo", backgroundColor: "red", ordering: 1 },
@@ -13,11 +13,14 @@ let initialTasks = [
 
 function DragDrop() {
     const [data, setData] = useState(initialTasks);
+    const [showModal, setShowModal] = useState(false)
     const onDragStart = (event, taskName) => {
         console.log('dragstart on div: ', taskName);
         event.dataTransfer.setData("taskName", taskName);
     }
-
+    const toggle = () => {
+        setShowModal(!showModal);
+    }
     const onDragOver = (event) => {
         event.preventDefault();
     }
@@ -58,6 +61,11 @@ function DragDrop() {
             <nav className="navbar navbar-dark bg-dark mb-3">
                 <h3><span className="badge badge-secondary">Home</span></h3>
             </nav>
+            <div className="row">
+                <div className="col-md-4">
+                    <button type="button" className="btn btn-secondary" onClick={() => setShowModal(true)}>Add Tasks</button>
+                </div>
+            </div>
             <div className="container drag-container">
                 <div className="row">
                     <div className="card col-md-3 container inProgress"
@@ -90,6 +98,7 @@ function DragDrop() {
                     </div>
                 </div>
             </div>
+            <Modal isShowing={showModal} hide={toggle} />
         </div>
     )
 }
