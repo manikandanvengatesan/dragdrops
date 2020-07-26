@@ -25,6 +25,7 @@ function DragDrop() {
         event.preventDefault();
     }
     const addTask = (input) => {
+        let newData = data;
         let task = {
             id: data.length + 1,
             taskName: input,
@@ -32,7 +33,6 @@ function DragDrop() {
             backgroundColor: "red",
             ordering: data.length + 1
         }
-        let newData = data;
         newData.push(task)
         setData(newData);
         setShowModal(!showModal)
